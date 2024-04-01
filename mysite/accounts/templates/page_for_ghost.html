@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Заметки</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+    <h1>Google-Keep заметки</h1> <br>
+    <h4>Для того, что бы управлять заметками, <a href="{% url 'register' %}" class="btn btn-warning btn-sm">
+    <h4>Зарегистрируйтесь,</h4></a>
+    или <a href="{% url 'login' %}" class="btn btn-primary btn-sm"><h4>Войдите</h4></a></h4> <br>
+
+
+    <div class="container mt-5">
+        <h3>Заметки</h3>
+        <form method="POST" action="{% url 'add_task' %}">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="title" placeholder="Напишите название">
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>
